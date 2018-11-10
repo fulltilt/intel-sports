@@ -1,3 +1,11 @@
+## TODO
+
+Pagination<br>
+Styling<br>
+Do Tags correctly<br>
+Form Validation<br>
+Responsiveness
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
