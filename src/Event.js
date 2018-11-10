@@ -2,6 +2,7 @@ import React from "react";
 import $ from "jquery";
 import { getEvent, submitContent } from "./apis";
 import { Link } from "react-router-dom";
+import AddContentModal from "./AddContentModal";
 import "./App.css";
 
 class Event extends React.Component {
@@ -50,7 +51,22 @@ class Event extends React.Component {
   };
 
   render() {
-    let { eventClips, eventId } = this.state;
+    let {
+      eventClips,
+      eventId,
+      contentType,
+      isFeatured,
+      category,
+      newEventId,
+      tags
+    } = this.state;
+    let fields = {
+      contentType,
+      isFeatured,
+      category,
+      newEventId,
+      tags
+    };
     return (
       <div className="container">
         <h2 className="row justify-content-md-center">Event {eventId}</h2>
@@ -99,123 +115,11 @@ class Event extends React.Component {
           </div>
         ) : null}
 
-        <div
-          className="modal fade"
-          id="exampleModal"
-          tabIndex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">
-                  Modal title
-                </h5>
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div className="modal-body">
-                <div className="row">
-                  <div className="col-md-6 mb-3">
-                    <label htmlFor="tags">Tags</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="tags"
-                      id="tags"
-                      value={this.state.tags}
-                      onChange={this.handleChange}
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-6 mb-3">
-                    <label htmlFor="newEventId">Event ID</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="newEventId"
-                      id="newEventId"
-                      value={this.state.newEventId}
-                      onChange={this.handleChange}
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-6 mb-3">
-                    <label htmlFor="category">Category</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="category"
-                      id="category"
-                      value={this.state.category}
-                      onChange={this.handleChange}
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-6 mb-3">
-                    <label htmlFor="isFeatured">Featured</label>
-                    <select
-                      value={this.state.isFeatured}
-                      className="custom-select d-block w-100"
-                      name="isFeatured"
-                      id="isFeatured"
-                      onChange={this.handleChange}
-                      required
-                    >
-                      <option value="">Choose...</option>
-                      <option value={true}>Yes</option>
-                      <option value={false}>No</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-6 mb-3">
-                    <label htmlFor="contentType">Type</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="contentType"
-                      id="contentType"
-                      value={this.state.contentType}
-                      onChange={this.handleChange}
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={this.submitContent}
-                >
-                  Save changes
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <AddContentModal
+          handleChange={this.handleChange}
+          submitContent={this.submitContent}
+          fields={fields}
+        />
       </div>
     );
   }

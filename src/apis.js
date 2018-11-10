@@ -46,7 +46,7 @@ export function submitContent(properties) {
     stereoSupport: true,
     monoSupport: false,
     multicamSupport: false,
-    tags: [tags],
+    tags: [tags.split(",")],
     isPremiumContent: true,
     multicamUrls: {
       high:
