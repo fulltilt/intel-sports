@@ -2,9 +2,7 @@ import axios from "axios";
 
 export function getEvents() {
   return axios
-    .get(
-      "https://02044b06-719f-4061-b387-5e828bc2b9ed.mock.pstmn.io/nba/events"
-    )
+    .get("https://c655cf7e-1f57-409c-be83-434b5fc016a7.mock.pstmn.io/events")
     .then(res => res.data.events)
     .catch(err => Promise.reject(err));
 }
@@ -12,7 +10,7 @@ export function getEvents() {
 export function getEvent(id) {
   return axios
     .get(
-      `https://02044b06-719f-4061-b387-5e828bc2b9ed.mock.pstmn.io/cms/exp/nba/content/metadata?
+      `https://02044b06-719f-4061-b387-5e828bc2b9ed.mock.pstmn.io/v1/exp/nba/content/hmd?
     eventId=${id}`
     )
     .then(res => res.data.content[0])
@@ -60,7 +58,7 @@ export function submitContent(properties) {
 
   return axios
     .post(
-      "https://02044b06-719f-4061-b387-5e828bc2b9ed.mock.pstmn.io/cms/exp/nba/mam/metadata",
+      "https://02044b06-719f-4061-b387-5e828bc2b9ed.mock.pstmn.io/v1/exp/nba/mam/hmd",
       data
     )
     .then(res => res.data)
